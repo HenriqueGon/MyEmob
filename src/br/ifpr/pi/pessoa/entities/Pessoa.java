@@ -21,9 +21,16 @@ public class Pessoa {
 	private Long id;
 	
 	private String nome;
+	
+	@Column(length = 18)
 	private String documentoFederal;
+	
+	@Column(length = 16)
 	private String telefone1;
+	
+	@Column(length = 16)
 	private String telefone2;
+	
 	private String email;
 	
 	private char statusAtivo;
