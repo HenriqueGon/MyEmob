@@ -96,10 +96,6 @@ public class Endereco {
 	public LocalDateTime getDataHoraAlteracao() {
 		return dataHoraAlteracao;
 	}
-
-	public void setDataHoraAlteracao(LocalDateTime dataHoraAlteracao) {
-		this.dataHoraAlteracao = dataHoraAlteracao;
-	}
 	
 	@Override
 	public int hashCode() {
