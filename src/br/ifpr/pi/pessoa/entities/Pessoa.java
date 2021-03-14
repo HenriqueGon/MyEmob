@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,6 +15,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import br.ifpr.pi.core.entities.Endereco;
 
 @Entity
+@Table(name = "pessoa")
 public class Pessoa {
 	
 	@Id
@@ -22,7 +24,7 @@ public class Pessoa {
 	
 	private String nome;
 	
-	@Column(length = 18)
+	@Column(name = "documento_federal", length = 18)
 	private String documentoFederal;
 	
 	@Column(length = 16)
@@ -33,15 +35,16 @@ public class Pessoa {
 	
 	private String email;
 	
+	@Column(name = "status_ativo")
 	private char statusAtivo;
 	
 	private Endereco endereco;
 	
-	@Column(columnDefinition = "TIMESTAMP")
+	@Column(name = "data_hora_cadastro", columnDefinition = "TIMESTAMP")
 	@CreationTimestamp
 	private LocalDateTime dataHoraCadastro;
 	
-	@Column(columnDefinition = "TIMESTAMP")
+	@Column(name = "data_hora_alteracao", columnDefinition = "TIMESTAMP")
 	@UpdateTimestamp
 	private LocalDateTime dataHoraAlteracao;
 	
