@@ -3,14 +3,17 @@ package br.ifpr.pi.core.entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.print.attribute.standard.MediaSize.Other;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+@Entity
+@Table (name = "endereco")
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,13 +27,15 @@ public class Endereco {
 	
 	private Rua rua;
 	
+	
+	@Column (name = "status_ativo")
 	private char statusAtivo;
 	
-	@Column(columnDefinition = "TIMESTAMP")
+	@Column(name = "data_hora_cadastro", columnDefinition = "TIMESTAMP")
 	@CreationTimestamp
 	private LocalDateTime dataHoraCadastro;
 	
-	@Column(columnDefinition = "TIMESTAMP")
+	@Column(name = "data_hora_alteracao", columnDefinition = "TIMESTAMP")
 	@UpdateTimestamp
 	private LocalDateTime dataHoraAlteracao;
 	
@@ -95,10 +100,6 @@ public class Endereco {
 	
 	public LocalDateTime getDataHoraAlteracao() {
 		return dataHoraAlteracao;
-	}
-
-	public void setDataHoraAlteracao(LocalDateTime dataHoraAlteracao) {
-		this.dataHoraAlteracao = dataHoraAlteracao;
 	}
 	
 	@Override

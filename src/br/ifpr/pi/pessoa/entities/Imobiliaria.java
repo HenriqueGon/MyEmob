@@ -1,8 +1,15 @@
 package br.ifpr.pi.pessoa.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.ifpr.pi.core.entities.Endereco;
 
+@Entity
+@Table (name = "imobiliaria")
 public class Imobiliaria extends Pessoa {
+	@Column (name = "razao_social")
 	private String razaoSocial;
 
 	@Deprecated

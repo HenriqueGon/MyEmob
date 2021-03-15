@@ -1,4 +1,4 @@
-package br.ifpr.pi.core.services;
+package br.ifpr.pi.core.daos;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -8,17 +8,17 @@ import javax.persistence.EntityManager;
 import br.ifpr.pi.core.entities.Endereco;
 import br.ifpr.pi.infra.EntityManagerFactoryProducer;
 
-public class EnderecoService {
+public class EnderecoDao {
 	
 	private final EntityManager entityManager; 
 	private final PrintStream print;
 	
-	public EnderecoService() {
+	public EnderecoDao() {
 		this.entityManager = EntityManagerFactoryProducer.createEntityManager();
 		this.print = System.out;
 	}
 	
-	public EnderecoService(EntityManager entityManager) {
+	public EnderecoDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 		this.print = System.out;
 	}
