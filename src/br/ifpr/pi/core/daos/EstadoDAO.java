@@ -40,5 +40,11 @@ public class EstadoDAO {
 		
 		return getEm().createQuery(query, Estado.class).getResultList();
 	}
+	
+	public void finalizar() {
+		if (getEm().isOpen()) {
+			getEm().close();
+		}
+	}
 
 }
