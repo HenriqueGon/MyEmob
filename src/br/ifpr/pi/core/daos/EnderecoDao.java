@@ -1,90 +1,50 @@
 package br.ifpr.pi.core.daos;
 
-import java.io.PrintStream;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import br.ifpr.pi.core.entities.Endereco;
-import br.ifpr.pi.infra.EntityManagerFactoryProducer;
 
 public class EnderecoDao {
 	
-	private final EntityManager entityManager; 
-	private final PrintStream print;
+	private final EntityManager em; 
 	
-	public EnderecoDao() {
-		this.entityManager = EntityManagerFactoryProducer.createEntityManager();
-		this.print = System.out;
+	public EnderecoDao(EntityManager em) {
+		this.em = em;
 	}
 	
-	public EnderecoDao(EntityManager entityManager) {
-		this.entityManager = entityManager;
-		this.print = System.out;
-	}
-	
-	private EntityManager getEntityManager() {
-		return this.entityManager;
+	private EntityManager getEm() {
+		return this.em;
 	}
 	
 	public void cadastrar(Endereco endereco) {
-		try {
-			getEntityManager().getTransaction().begin();
-			getEntityManager().persist(endereco);
-			getEntityManager().getTransaction().commit();
-			
-			this.print.println("Endereço cadastrado com sucesso!");
-		} catch (Exception ex) {
-			getEntityManager().getTransaction().rollback();
-			
-			this.print.println("Um erro ocorreu durante o cadastro do endereço");
-			this.print.println("Erro: " + ex.getMessage());
-		}
+		getEm().persist(endereco);
 	}
 	
 	public void alterar(Endereco endereco) {
-		try {
-			getEntityManager().getTransaction().begin();
-			getEntityManager().merge(endereco);
-			getEntityManager().getTransaction().commit();
-			
-			this.print.println("Endereço alterado com sucesso!");
-		} catch (Exception ex) {
-			getEntityManager().getTransaction().rollback();
-			
-			this.print.println("Um erro ocorreu durante a alteração do endereço");
-			this.print.println("Erro:" + ex.getMessage());
-		}
+		getEm().merge(endereco);
 	}
 	
 	public void inativar(Endereco endereco) {
 		endereco.setStatusAtivo('I');
 		
-		try {
-			getEntityManager().getTransaction().begin();
-			getEntityManager().merge(endereco);
-			getEntityManager().getTransaction().commit();
-		} catch (Exception ex) {
-			getEntityManager().getTransaction().rollback();
-			
-			this.print.println("Um erro ocorreu durante a inativação do endereço");
-			this.print.println("Erro:" + ex.getMessage());
-		}
+		getEm().merge(endereco);
 	}
 	
 	public Endereco getEnderecoPorId(Long id) {
-		return getEntityManager().find(Endereco.class, id);
+		return getEm().find(Endereco.class, id);
 	}
 	
 	public List<Endereco> getTodosEnderecosAtivos() {
-		String query = "from Endereco WHERE statusAtivo = 'A'";
+		String query = "from endereco WHERE status_ativo = 'A'";
 				
-		return getEntityManager().createQuery(query, Endereco.class).getResultList();
+		return getEm().createQuery(query, Endereco.class).getResultList();
 	}
 	
 	public void finalizar() {
-		if (getEntityManager().isOpen()) {
-			getEntityManager().close();
+		if (getEm().isOpen()) {
+			getEm().close();
 		}
 	}
 }
