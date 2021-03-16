@@ -7,45 +7,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "estado")
-public class Estado {
+@Table(name = "cidade")
+public class Cidade {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(unique = true)
 	private String nome;
 	
-	@Column(length = 2)
-	private String sigla;
+	@OneToMany
+	private Estado estado;
 	
 	@Column(name = "status_ativo", length = 1)
 	private char statusAtivo;
 	
 	@Column(name = "data_hora_cadastro", columnDefinition = "TIMESTAMP")
-	@UpdateTimestamp
+	@CreationTimestamp
 	private LocalDateTime dataHoraCadastro;
 	
 	@Column(name = "data_hora_alteracao", columnDefinition = "TIMESTAMP")
-	@UpdateTimestamp
+	@CreationTimestamp
 	private LocalDateTime dataHoraAlteracao;
 	
 	@Deprecated
-	public Estado() {}
+	public Cidade() {}
 	
-	public Estado(String nome, String sigla) {
+	public Cidade(String nome, Estado estado) {
 		this.nome = nome;
-		this.sigla = sigla;
+		this.estado = estado;
 		this.statusAtivo = 'A';
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getNome() {
@@ -56,12 +53,12 @@ public class Estado {
 		this.nome = nome;
 	}
 
-	public String getSigla() {
-		return sigla;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	public char getStatusAtivo() {
@@ -70,6 +67,10 @@ public class Estado {
 
 	public void setStatusAtivo(char statusAtivo) {
 		this.statusAtivo = statusAtivo;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public LocalDateTime getDataHoraCadastro() {
@@ -89,32 +90,28 @@ public class Estado {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		
 		if (obj == null)
 			return false;
-		
 		if (getClass() != obj.getClass())
 			return false;
-		
-		Estado other = (Estado) obj;
-		
+		Cidade other = (Cidade) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-			
 		} else if (!id.equals(other.id))
 			return false;
-		
 		return true;
 	}
 	
 	@Override
 	public String toString() {
-		return this.nome + this.sigla;
+		return this.nome;
 	}
+	
+	
+	
+
 }
-
-
 
 
 
