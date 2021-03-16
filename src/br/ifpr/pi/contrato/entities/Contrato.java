@@ -185,4 +185,9 @@ public class Contrato {
 		
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return this.tipo + this.getImovel().getDescricao();
+	}
 }
