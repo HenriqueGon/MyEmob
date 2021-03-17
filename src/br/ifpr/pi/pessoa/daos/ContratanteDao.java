@@ -18,15 +18,15 @@ public class ContratanteDao {
 		return this.em;
 	}
 	
-	public void cadastrar (Contratante contratante) {
+	public void cadastrar(Contratante contratante) {
 		getEm().persist(contratante);
 	}
 	
-	public void alterar (Contratante contratante) {
+	public void alterar(Contratante contratante) {
 		getEm().merge(contratante);
 	}
 	
-	public void inativar (Contratante contratante) {
+	public void inativar(Contratante contratante) {
 		contratante.setStatusAtivo('I');
 		
 		getEm().merge(contratante);

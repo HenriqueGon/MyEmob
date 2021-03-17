@@ -61,6 +61,21 @@ public class Contrato {
 	@Deprecated
 	public Contrato() {}
 
+	public Contrato(char tipo, LocalDate dataInicioVigencia, LocalDate dataFinalVigencia, Double valor,
+			char tipoContratante, Imovel imovel, Fiador fiador, Contratante contratante, Proprietario proprietario) {
+		
+		this.tipo = tipo;
+		this.dataInicioVigencia = dataInicioVigencia;
+		this.dataFinalVigencia = dataFinalVigencia;
+		this.valor = valor;
+		this.tipoContratante = tipoContratante;
+		this.imovel = imovel;
+		this.fiador = fiador;
+		this.contratante = contratante;
+		this.proprietario = proprietario;
+		this.statusAtivo = 'A';
+	}
+	
 	public Long getId() {
 		return id;
 	}
