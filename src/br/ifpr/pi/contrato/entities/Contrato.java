@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,12 +40,16 @@ public class Contrato {
 	@Column(name = "tipo_contratante", length = 1)
 	private char tipoContratante;
 	
+	@OneToMany
 	private Imovel imovel;
 	
+	@OneToMany
 	private Fiador fiador;
 	
+	@OneToMany
 	private Contratante contratante;
 	
+	@OneToMany
 	private Proprietario proprietario;
 	
 	@Column(name = "status_ativo", length = 1)

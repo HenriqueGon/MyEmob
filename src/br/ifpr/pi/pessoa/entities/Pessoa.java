@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -36,6 +37,7 @@ public class Pessoa {
 	@Column(name = "status_ativo", length = 1)
 	private char statusAtivo;
 	
+	@OneToMany
 	private Endereco endereco;
 	
 	@Column(name = "data_hora_cadastro", columnDefinition = "TIMESTAMP")
