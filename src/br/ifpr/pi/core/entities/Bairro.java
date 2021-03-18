@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "cidade")
-public class Cidade {
+@Table(name = "bairro")
+public class Bairro {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,7 @@ public class Cidade {
 	private String nome;
 	
 	@OneToMany
-	private Estado estado;
+	private Cidade cidade;
 	
 	@Column(name = "status_ativo", length = 1)
 	private char statusAtivo;
@@ -37,11 +37,11 @@ public class Cidade {
 	private LocalDateTime dataHoraAlteracao;
 	
 	@Deprecated
-	public Cidade() {}
+	public Bairro() {}
 	
-	public Cidade(String nome, Estado estado) {
+	public Bairro(String nome, Cidade cidade) {
 		this.nome = nome;
-		this.estado = estado;
+		this.cidade = cidade;
 		this.statusAtivo = 'A';
 	}
 
@@ -53,12 +53,12 @@ public class Cidade {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public Cidade getCidade() {
+		return cidade;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	public char getStatusAtivo() {
@@ -94,7 +94,7 @@ public class Cidade {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Bairro other = (Bairro) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -106,8 +106,11 @@ public class Cidade {
 	@Override
 	public String toString() {
 		return this.nome;
-	}
+	}	
 }
+
+
+
 
 
 
