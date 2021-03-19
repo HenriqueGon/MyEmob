@@ -19,7 +19,8 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private int numero;
+	@Column (length = 10)
+	private String numero;
 	
 	private String complemento;
 	
@@ -27,8 +28,7 @@ public class Endereco {
 	
 	private Rua rua;
 	
-	
-	@Column (name = "status_ativo")
+	@Column (name = "status_ativo", length = 1)
 	private char statusAtivo;
 	
 	@Column(name = "data_hora_cadastro", columnDefinition = "TIMESTAMP")
@@ -42,7 +42,7 @@ public class Endereco {
 	@Deprecated
 	public Endereco() {}
 	
-	public Endereco(int numero, String complemento, String referencia, Rua rua) {
+	public Endereco(String numero, String complemento, String referencia, Rua rua) {
 		this.numero = numero;
 		this.complemento = complemento;
 		this.referencia = referencia;
@@ -54,11 +54,11 @@ public class Endereco {
 		return id;
 	}
 	
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 

@@ -37,14 +37,8 @@ public class EnderecoDao {
 	}
 	
 	public List<Endereco> getTodosEnderecosAtivos() {
-		String query = "from endereco WHERE status_ativo = 'A'";
+		String query = "FROM endereco WHERE status_ativo = 'A'";
 				
 		return getEm().createQuery(query, Endereco.class).getResultList();
-	}
-	
-	public void finalizar() {
-		if (getEm().isOpen()) {
-			getEm().close();
-		}
 	}
 }
