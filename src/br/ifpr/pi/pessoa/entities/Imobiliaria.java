@@ -29,4 +29,42 @@ public class Imobiliaria extends Pessoa {
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
+	
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+	
+	@Override
+	public boolean equals (Object obj) {
+		if (this == obj) {
+			return true;
+		}
+			
+		if (obj == null) {
+			return false;
+		}
+
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Imobiliaria other = (Imobiliaria) obj;
+		if (getId() == null) {
+			if (other.getId() != null) {
+				return false;
+			}
+		} 
+		
+		else if (!getId().equals(other.getId())) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return this.razaoSocial;
+	}
 }
