@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 
 import br.ifpr.pi.core.entities.Rua;
 
-public class RuaDAO {
+public class RuaDao {
 	
 	private final EntityManager em;
 	
-	public RuaDAO(EntityManager em) {
+	public RuaDao(EntityManager em) {
 		this.em = em;
 	}
 	

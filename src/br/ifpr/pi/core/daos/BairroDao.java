@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 
 import br.ifpr.pi.core.entities.Bairro;
 
-public class BairroDAO {
+public class BairroDao {
 	
 	private final EntityManager em;
 	
-	public BairroDAO(EntityManager em) {
+	public BairroDao(EntityManager em) {
 		this.em = em;
 	}
 	
