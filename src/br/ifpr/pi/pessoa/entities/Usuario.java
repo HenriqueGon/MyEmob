@@ -8,10 +8,10 @@ import br.ifpr.pi.core.entities.Endereco;
 @Entity
 @Table (name = "usuario")
 public class Usuario extends Pessoa {
-	private Imobiliaria imobiliaria;
 	private String login;
 	private String senha;
 	private char tipo;
+	private Imobiliaria imobiliaria;
 	
 	@Deprecated
 	public Usuario() {}
@@ -57,5 +57,43 @@ public class Usuario extends Pessoa {
 
 	public void setTipo(char tipo) {
 		this.tipo = tipo;
+	}
+	
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+	
+	@Override
+	public boolean equals (Object obj) {
+		if (this == obj) {
+			return true;
+		}
+			
+		if (obj == null) {
+			return false;
+		}
+
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Usuario other = (Usuario) obj;
+		if (getId() == null) {
+			if (other.getId() != null) {
+				return false;
+			}
+		} 
+		
+		else if (!getId().equals(other.getId())) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getNome();
 	}
 }

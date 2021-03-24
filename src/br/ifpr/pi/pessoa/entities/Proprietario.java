@@ -1,6 +1,7 @@
 package br.ifpr.pi.pessoa.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.ifpr.pi.core.entities.Endereco;
@@ -9,6 +10,7 @@ import br.ifpr.pi.core.entities.Endereco;
 @Table(name = "proprietario")
 public class Proprietario extends Pessoa {
 	
+	@OneToMany
 	private Imobiliaria imobiliaria;
 	
 	@Deprecated

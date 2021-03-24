@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 
 import br.ifpr.pi.core.entities.Estado;
 
-public class EstadoDAO {
+public class EstadoDao {
 	
 	private final EntityManager em;
 	
-	public EstadoDAO(EntityManager em) {
+	public EstadoDao(EntityManager em) {
 		this.em = em;
 	}
 	
@@ -18,7 +18,7 @@ public class EstadoDAO {
 		return this.em;
 	}
 	
-	public void cadastrar (Estado estado) {
+	public void cadastrar(Estado estado) {
 		getEm().persist(estado);
 	}
 	
@@ -39,12 +39,6 @@ public class EstadoDAO {
 		String query = "from estado WHERE status_ativo = 'A'";
 		
 		return getEm().createQuery(query, Estado.class).getResultList();
-	}
-	
-	public void finalizar() {
-		if (getEm().isOpen()) {
-			getEm().close();
-		}
 	}
 
 }

@@ -1,4 +1,4 @@
-package br.ifpr.pi.core.entities;
+package br.ifpr.pi.contrato.entities;
 
 import java.time.LocalDateTime;
 
@@ -12,21 +12,18 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import br.ifpr.pi.core.entities.Endereco;
+import br.ifpr.pi.pessoa.entities.Proprietario;
+
 @Entity
-@Table (name = "endereco")
-public class Endereco {
+@Table(name = "imovel")
+public class Imovel {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column (length = 10)
-	private String numero;
-	
-	private String complemento;
-	
-	private String referencia;
-	
-	private Rua rua;
+	private String descricao;
 	
 	@Column (name = "status_ativo", length = 1)
 	private char statusAtivo;
@@ -39,67 +36,60 @@ public class Endereco {
 	@UpdateTimestamp
 	private LocalDateTime dataHoraAlteracao;
 	
-	@Deprecated
-	public Endereco() {}
+	private Endereco endereco;
+	private Proprietario proprietario;
 	
-	public Endereco(String numero, String complemento, String referencia, Rua rua) {
-		this.numero = numero;
-		this.complemento = complemento;
-		this.referencia = referencia;
-		this.rua = rua;
-		this.statusAtivo = 'A';
+	@Deprecated
+	public Imovel() {}
+	
+	public Imovel (String descricao, Endereco endereco, Proprietario proprietario) {
+		this.descricao = descricao;
+		this.endereco = endereco;
+		this.proprietario = proprietario;
 	}
-
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 	
-	public String getNumero() {
-		return numero;
+	public String getDescricao() {
+		return descricao;
 	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getReferencia() {
-		return referencia;
-	}
-
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
-	}
-
-	public Rua getRua() {
-		return rua;
-	}
-
-	public void setRua(Rua rua) {
-		this.rua = rua;
-	}
-
+	
 	public char getStatusAtivo() {
 		return statusAtivo;
 	}
-
+	
 	public void setStatusAtivo(char statusAtivo) {
 		this.statusAtivo = statusAtivo;
 	}
-
+	
 	public LocalDateTime getDataHoraCadastro() {
 		return dataHoraCadastro;
 	}
 	
 	public LocalDateTime getDataHoraAlteracao() {
 		return dataHoraAlteracao;
+	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	public Proprietario getProprietario() {
+		return proprietario;
+	}
+	
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
 	}
 	
 	@Override
@@ -121,7 +111,7 @@ public class Endereco {
 			return false;
 		}
 		
-		Endereco other = (Endereco) obj;
+		Imovel other = (Imovel) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;
@@ -137,6 +127,6 @@ public class Endereco {
 	
 	@Override
 	public String toString() {
-		return this.complemento + this.referencia;
+		return this.descricao;
 	}
 }

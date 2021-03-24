@@ -7,22 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "rua")
-public class Rua {
-
+@Table(name = "bairro")
+public class Bairro {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String nome;
 	
-	@Column(length = 9)
-	private String cep;
+	@OneToMany
+	private Cidade cidade;
 	
 	@Column(name = "status_ativo", length = 1)
 	private char statusAtivo;
@@ -36,11 +37,11 @@ public class Rua {
 	private LocalDateTime dataHoraAlteracao;
 	
 	@Deprecated
-	public Rua() {}
+	public Bairro() {}
 	
-	public Rua(String nome, String cep) {
+	public Bairro(String nome, Cidade cidade) {
 		this.nome = nome;
-		this.cep = cep;
+		this.cidade = cidade;
 		this.statusAtivo = 'A';
 	}
 
@@ -52,12 +53,12 @@ public class Rua {
 		this.nome = nome;
 	}
 
-	public String getCep() {
-		return cep;
+	public Cidade getCidade() {
+		return cidade;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	public char getStatusAtivo() {
@@ -93,7 +94,7 @@ public class Rua {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Rua other = (Rua) obj;
+		Bairro other = (Bairro) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -104,10 +105,14 @@ public class Rua {
 	
 	@Override
 	public String toString() {
-		return this.nome + this.cep;
-	}
-	
+		return this.nome;
+	}	
 }
+
+
+
+
+
 
 
 
